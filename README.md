@@ -35,7 +35,7 @@ Usefull utils for [Akka Actors](http://http://akka.io)
 ```xml
     <dependency>
         <groupId>ua.t3hnar.akka</groupId>
-        <artifactId>akka-extensiont</artifactId>
+        <artifactId>akka-extension</artifactId>
         <version>1.0</version>
     </dependency>
 ```
