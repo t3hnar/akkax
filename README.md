@@ -17,6 +17,7 @@ Usefull utils for [Akka Actors](http://http://akka.io)
     ```scala
         DurationToString(Duration(60, TimeUnit.SECONDS)) == "1 minute"
         DurationToString(Duration(60, TimeUnit.MINUTES)) == "1 hour"
+        DurationToString(Duration(180, TimeUnit.MINUTES)) == "3 hours"
     ```
 
 ## Setup
