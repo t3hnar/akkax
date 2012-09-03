@@ -10,6 +10,15 @@ Usefull utils for [Akka Actors](http://http://akka.io)
 
     Broadcast message to all child actors
 
+* ### DurationToString
+
+    Converts duration to string
+
+    ```scala
+        DurationToString(Duration(60, TimeUnit.SECONDS)) == "1 minute"
+        DurationToString(Duration(60, TimeUnit.MINUTES)) == "1 hour"
+    ```
+
 ## Setup
 
 1. Add this repository to your pom.xml:
