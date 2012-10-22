@@ -1,6 +1,6 @@
 # Akka Extension [![Build Status](https://secure.travis-ci.org/t3hnar/akka-extension.png)](http://travis-ci.org/t3hnar/akka-extension)
 
-Usefull utils for [Akka Actors](http://http://akka.io)
+Usefull utils for [Akka Actors](http://akka.io)
 
 * ### RoutingActor
 
