@@ -1,4 +1,4 @@
-package ua.t3hnar.akka.extension
+package ua.t3hnar.akkax
 
 import akka.util.Duration
 import java.util.concurrent.TimeUnit

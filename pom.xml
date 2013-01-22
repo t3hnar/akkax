@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -8,22 +9,22 @@
         <version>1.1</version>
     </parent>
 
-    <groupId>ua.t3hnar.akka</groupId>
-    <artifactId>akka-extension</artifactId>
+    <groupId>ua.t3hnar.akkax</groupId>
+    <artifactId>akkax</artifactId>
     <version>1.1-SNAPSHOT</version>
 
-    <name>Akka extension</name>
-    <url>https://github.com/t3hnar/akka-extension</url>
+    <name>AkkaX</name>
+    <url>https://github.com/t3hnar/akkax</url>
     <inceptionYear>2012</inceptionYear>
 
     <properties>
-        <akka.version>2.0.3</akka.version>
+        <akka.version>2.0.5</akka.version>
     </properties>
 
     <scm>
-        <url>https://github.com/t3hnar/akka-extension</url>
-        <connection>scm:git:ssh://git@github.com/t3hnar/akka-extension</connection>
-        <developerConnection>scm:git:ssh://git@github.com/t3hnar/akka-extension</developerConnection>
+        <url>https://github.com/t3hnar/akkax</url>
+        <connection>scm:git:ssh://git@github.com/t3hnar/akkax</connection>
+        <developerConnection>scm:git:ssh://git@github.com/t3hnar/akkax</developerConnection>
     </scm>
 
     <developers>

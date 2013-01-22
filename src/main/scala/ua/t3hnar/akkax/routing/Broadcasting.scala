@@ -1,4 +1,4 @@
-package ua.t3hnar.akka.extension.routing
+package ua.t3hnar.akkax.routing
 
 
 /**

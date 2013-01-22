@@ -1,6 +1,6 @@
-# Akka Extension [![Build Status](https://secure.travis-ci.org/t3hnar/akka-extension.png)](http://travis-ci.org/t3hnar/akka-extension)
+# AkkaX [![Build Status](https://secure.travis-ci.org/t3hnar/akkax.png)](http://travis-ci.org/t3hnar/akkax)
 
-Usefull utils for [Akka Actors](http://akka.io)
+Useful utils for [Akka Actors](http://http://akka.io)
 
 * ### RoutingActor
 
@@ -34,8 +34,8 @@ Usefull utils for [Akka Actors](http://akka.io)
 2. Add dependency to your pom.xml:
 ```xml
     <dependency>
-        <groupId>ua.t3hnar.akka</groupId>
-        <artifactId>akka-extension</artifactId>
-        <version>1.0</version>
+        <groupId>ua.t3hnar.akkax</groupId>
+        <artifactId>akkax</artifactId>
+        <version>1.1</version>
     </dependency>
 ```

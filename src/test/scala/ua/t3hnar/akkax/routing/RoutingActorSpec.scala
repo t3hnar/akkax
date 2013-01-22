@@ -1,4 +1,4 @@
-package ua.t3hnar.akka.extension.routing
+package ua.t3hnar.akkax.routing
 
 import org.specs2.mutable.SpecificationWithJUnit
 import org.specs2.specification.Scope
