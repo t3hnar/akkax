@@ -3,40 +3,39 @@
 Useful utils for [Akka Actors](http://http://akka.io)
 
 ### RoutingActor
-    Actor which will pass message to child actor defined for route. If no actors found, it will create a new one.
+Actor which will pass message to child actor defined for route. If no actors found, it will create a new one.
 
 ### BroadcastingActor
-    Broadcast message to all child actors
+Broadcast message to all child actors
 
 ### DurationToString
-    Converts duration to string
+Converts duration to string
 
 ```scala
-    import ua.t3hnar.akkax.DurationToString
+import ua.t3hnar.akkax.DurationToString
 
-    DurationToString(Duration(60, TimeUnit.SECONDS)) == "1 minute"
-    DurationToString(Duration(60, TimeUnit.MINUTES)) == "1 hour"
-    DurationToString(Duration(180, TimeUnit.MINUTES)) == "3 hours"
+DurationToString(Duration(60, TimeUnit.SECONDS)) == "1 minute"
+DurationToString(Duration(60, TimeUnit.MINUTES)) == "1 hour"
+DurationToString(Duration(180, TimeUnit.MINUTES)) == "3 hours"
 ```
 
 ### NotifyParentOnRestart
-    Actor with mixed
-    Mix this trait to enable on restart notification for actor.
+Mix this trait to enable on restart notification for actor.
 
 ```scala
-    import ua.t3hnar.akkax.{NotifyParentOnRestart, Restarted}
+import ua.t3hnar.akkax.{NotifyParentOnRestart, Restarted}
 
-    class ChildActor extends Actor with NotifyParentOnRestart {
-        def receive = { case _ => }
+class ChildActor extends Actor with NotifyParentOnRestart {
+    def receive = { case _ => }
+}
+
+class ParentActor extends Actor {
+    val child = context.actorOf(Props(new ChildActor))
+
+    def receive = {
+        case Restarted(`child`) => // your code for handling restart
     }
-
-    class ParentActor extends Actor {
-        val child = context.actorOf(Props(new ChildActor))
-
-        def receive = {
-            case Restarted(`child`) => // your code for handling restart
-        }
-    }
+}
 ```
 
 ## Setup
