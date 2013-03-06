@@ -38,6 +38,20 @@ class ParentActor extends Actor {
 }
 ```
 
+### IgnoreIfBusy
+Trait `IgnoreIfBusy` will allow your actor to ignore all messages while it busy with running heavy call
+
+```scala
+import ua.t3hnar.akkax.IgnoreIfBusy
+
+class IgnoreIfBusyExample extends Actor with IgnoreIfBusy {
+  protected def receive = receiveRun
+  def run() {
+    // heavy call
+  }
+}
+```
+
 ## Setup
 
 1. Add this repository to your pom.xml:
@@ -54,6 +68,6 @@ class ParentActor extends Actor {
     <dependency>
         <groupId>ua.t3hnar.akkax</groupId>
         <artifactId>akkax</artifactId>
-        <version>1.1</version>
+        <version>1.2</version>
     </dependency>
 ```
