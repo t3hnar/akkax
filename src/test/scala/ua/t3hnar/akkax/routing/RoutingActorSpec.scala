@@ -62,7 +62,7 @@ class RoutingActorSpec extends SpecificationWithJUnit {
   }
 
   class PingPongActor extends Actor {
-    protected def receive = {
+    def receive = {
       case "ping" => sender ! "pong"
       case "error" => throw new Exception
       case "kill" => context.stop(self)

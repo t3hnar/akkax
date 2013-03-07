@@ -7,7 +7,7 @@ package ua.t3hnar.akkax.routing
 trait Broadcasting {
   this: RoutingActor =>
 
-  protected def receiveBroadcast: Receive = {
+  def receiveBroadcast: Receive = {
     case Broadcast(msg) =>
 
       val routes = children.toList.map {

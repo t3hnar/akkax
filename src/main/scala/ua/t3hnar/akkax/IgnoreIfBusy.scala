@@ -1,7 +1,7 @@
 package ua.t3hnar.akkax
 
-import akka.dispatch.Future
 import akka.actor.{ActorLogging, Actor}
+import concurrent.Future
 
 /**
  * @author Yaroslav Klymko
@@ -10,13 +10,12 @@ trait IgnoreIfBusy {
   this: Actor with ActorLogging =>
 
   import IgnoreIfBusy._
-  import context.{become, unbecome}
-  import context.system
+  import context.{become, unbecome,dispatcher}
 
   def future[T](f: => T, completed: Completed) {
     Future(f).onComplete {
       x =>
-        if (x.isLeft) log.error(x.left.get, "Exception while running")
+        if (x.isFailure) log.error(x.failed.get, "Exception while running")
         self ! completed
     }
   }

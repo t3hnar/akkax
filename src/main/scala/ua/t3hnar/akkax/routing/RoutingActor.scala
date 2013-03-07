@@ -36,7 +36,7 @@ trait RoutingActor extends Actor {
     }.foreach(children -= _)
   }
 
-  protected def receiveRouted: Receive = {
+  def receiveRouted: Receive = {
     case Routed(routeId, msg) => child(routeId).tell(msg, sender)
     case Terminated(child) => unregisterChild(child.path)
   }

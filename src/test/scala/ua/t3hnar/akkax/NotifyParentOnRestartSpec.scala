@@ -32,7 +32,7 @@ class NotifyParentOnRestartSpec extends SpecificationWithJUnit {
     class ParentActor extends Actor {
       lazy val child = context.actorOf(Props(new ChildActor))
 
-      protected def receive = {
+      def receive = {
         case Restart => child ! new RuntimeException
         case restarted@Restarted(`child`) =>
           testActor ! restarted
@@ -44,7 +44,7 @@ class NotifyParentOnRestartSpec extends SpecificationWithJUnit {
 object NotifyParentOnRestartSpec {
 
   class ChildActor extends Actor with NotifyParentOnRestart {
-    protected def receive = {
+    def receive = {
       case e: Exception => throw e
     }
   }

@@ -34,6 +34,6 @@ class BroadcastingSpec extends SpecificationWithJUnit {
   }
 
   class EchoActor extends Actor {
-    protected def receive = { case msg => sender ! msg }
+    def receive = { case msg => sender ! msg }
   }
 }
