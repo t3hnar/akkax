@@ -9,7 +9,8 @@ import ua.t3hnar.akkax.IgnoreIfBusy
  */
 class IgnoreIfBusyExample extends Actor with ActorLogging with IgnoreIfBusy {
   protected def receive = receiveRun
-  def run() {
+
+  def run(data: Option[Any]) {
     // heavy call
   }
 }

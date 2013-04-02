@@ -21,20 +21,21 @@ trait IgnoreIfBusy {
     }
   }
 
-  def run()
+  def run(data: Option[Any])
 
   def receiveRun: Receive = {
-    case Run =>
+    case Run(data) =>
       val completed = new Completed
       become {
         case `completed` => unbecome()
       }
-      future(run(), completed)
+      future(run(data), completed)
   }
 }
 
 object IgnoreIfBusy {
-  case object Run
+  case class Run(data: Option[Any] = None)
+
   class Completed {
     override def toString = "Completed"
   }
