@@ -44,7 +44,7 @@ Trait `IgnoreIfBusy` will allow your actor to ignore all messages while it busy 
 ```scala
 import ua.t3hnar.akkax.IgnoreIfBusy
 
-class IgnoreIfBusyExample extends Actor with IgnoreIfBusy {
+class IgnoreIfBusyExample extends Actor with ActorLogging with IgnoreIfBusy {
   protected def receive = receiveRun
   def run() {
     // heavy call
