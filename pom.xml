@@ -9,7 +9,7 @@
     </parent>
     <groupId>ua.t3hnar.akkax</groupId>
     <artifactId>akkax_2.10</artifactId>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.4-SNAPSHOT</version>
     <name>AkkaX</name>
     <url>https://github.com/t3hnar/akkax</url>
     <inceptionYear>2012</inceptionYear>
