@@ -2,70 +2,77 @@ package ua.t3hnar.akkax.routing
 
 import org.specs2.mutable.SpecificationWithJUnit
 import org.specs2.specification.Scope
-import com.typesafe.config.ConfigFactory
 import akka.testkit.{TestActorRef, ImplicitSender, TestKit}
-import akka.actor.{ActorPath, Actor, Props, ActorSystem}
+import akka.actor._
 
 /**
  * @author Yaroslav Klymko
  */
 class RoutingActorSpec extends SpecificationWithJUnit {
   "RoutingActor" should {
-    "send message to child if exists, or create new if doesn't" >> new ChargerRouterScope {
+    "send message to child if exists, otherwise create a new one" in new ActorScope {
       actor.children must beEmpty
-
-      actorRef ! Routed("route1", "ping")
-      expectMsg("pong")
+      actorRef ! RoutedMsg(route, msg)
+      expectMsg(msg)
       actor.children must haveSize(1)
 
-      actorRef ! Routed("route2", "ping")
-      actorRef ! Routed("route3", "ping")
-      expectMsg("pong")
-      expectMsg("pong")
+      actorRef ! RoutedMsg(2, msg)
+      actorRef ! RoutedMsg(3, msg)
+      expectMsgAllOf(msg, msg)
       actor.children must haveSize(3)
     }
 
-    "not follow dead children" >> new ChargerRouterScope {
-      actorRef ! Routed("route", "ping")
-      expectMsg("pong")
+    "not follow dead children" in new ActorScope {
+      actorRef ! RoutedMsg(route, msg)
+      expectMsg(msg)
       actor.children must haveSize(1)
-      actorRef ! Routed("route", "kill")
-      expectMsg("killed")
-      actor.children must haveSize(0)
-    }
+      actorRef ! RoutedMsg(route, kill)
 
-    "not follow failed children" >> new ChargerRouterScope {
-      actorRef ! Routed("route", "ping")
-      expectMsg("pong")
-      actor.children must haveSize(1)
-      actorRef ! Routed("route", "error")
-      expectMsg("killed")
-      actor.children must haveSize(0)
-    }
-  }
-
-  class ChargerRouterScope extends TestKit(ActorSystem("test", ConfigFactory.empty())) with ImplicitSender with Scope {
-    val actorRef = TestActorRef(new PingPongRoutingActor {
-      override def unregisterChild(path: ActorPath) {
-        super.unregisterChild(path)
-        testActor ! "killed"
+      awaitCond {
+        actor.children.isEmpty
       }
-    }, "pingpongrouter")
+    }
 
+    "not follow failed children" in new ActorScope {
+      actorRef ! RoutedMsg(route, msg)
+      expectMsg(msg)
+      actor.children must haveSize(1)
+      actorRef ! RoutedMsg(route, error)
+
+      awaitCond {
+        actor.children.isEmpty
+      }
+    }
+
+    "monitor not only direct children" in new ActorScope {
+      actor.registerChild(testActor, route)
+      actor.children must haveSize(1)
+      system.stop(testActor)
+      awaitCond {
+        actor.children.isEmpty
+      }
+    }
+  }
+
+  class ActorScope extends TestKit(ActorSystem()) with ImplicitSender with Scope {
+    val route = 1
+    val msg = "msg"
+    val kill = "kill"
+    val error = "error"
+    val actorRef = TestActorRef(new TestRoutingActor)
     def actor = actorRef.underlyingActor
-  }
 
-  class PingPongRoutingActor extends RoutingActor {
-    def newChild(routeId: Any) = context.actorOf(Props(new PingPongActor))
+    class TestRoutingActor extends RoutingActor {
+      def newChild(routed: RoutedMsg) = Some(Props(new EchoActor))
+      def receive = receiveRouted
+    }
 
-    def receive = receiveRouted
-  }
-
-  class PingPongActor extends Actor {
-    def receive = {
-      case "ping" => sender ! "pong"
-      case "error" => throw new Exception
-      case "kill" => context.stop(self)
+    class EchoActor extends Actor {
+      def receive = {
+        case `error` => throw new Exception
+        case `kill` => context.stop(self)
+        case x => sender ! x
+      }
     }
   }
 }

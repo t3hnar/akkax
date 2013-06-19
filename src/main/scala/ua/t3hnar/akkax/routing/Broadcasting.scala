@@ -9,13 +9,12 @@ trait Broadcasting {
 
   def receiveBroadcast: Receive = {
     case Broadcast(msg) =>
-
-      val routes = children.toList.map {
-        case (route, path) =>
-          context.actorFor(path).tell(msg, sender)
+      val routes = children.map {
+        case (route, child) =>
+          child.forward(msg)
           route
       }
-      sender ! BroadcastRoutes(routes)
+      sender ! BroadcastRoutes(routes.toList)
   }
 }
 

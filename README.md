@@ -3,7 +3,7 @@
 Useful utils for [Akka Actors](http://http://akka.io)
 
 ### RoutingActor
-Actor which will pass message to child actor defined for route. If no actors found, it will create a new one.
+Actor which will pass message to child actor defined for route. If no actors found, it may create a new one.
 
 ### BroadcastingActor
 Broadcast message to all child actors

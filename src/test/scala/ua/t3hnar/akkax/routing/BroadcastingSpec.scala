@@ -13,27 +13,22 @@ class BroadcastingSpec extends SpecificationWithJUnit {
 
   "Broadcasting" should {
     "broadcast message to all children" in new BroadcastingScope {
-      actor ! Broadcast("hello")
-      expectMsgAllOf("hello", "hello", "hello")
+      val msg = "hello"
+      actor ! Broadcast(msg)
+      expectMsgAllOf(routes.map(_ => msg): _*)
+      val br = expectMsgType[BroadcastRoutes]
+      br.routes.toSet mustEqual routes.toSet
     }
   }
 
   class BroadcastingScope extends TestKit(ActorSystem("test", ConfigFactory.empty())) with ImplicitSender with Scope {
-    val actor = TestActorRef(new Broadcaster {
-      override val children = collection.mutable.Map[Any, ActorPath](
-        "r1" -> testActor.path,
-        "r2" -> testActor.path,
-        "r3" -> testActor.path)
-    })
-    def underlying = actor.underlyingActor
-  }
+    val routes = (1 to 5).toList
+    val actor = TestActorRef(new Broadcaster)
+    actor.underlyingActor.children = routes.map(_ -> testActor).toMap
 
-  class Broadcaster extends RoutingActor with Broadcasting with ActorLogging {
-    def newChild(routeId: Any) = context.actorOf(Props(new EchoActor))
-    def receive = receiveBroadcast
-  }
-
-  class EchoActor extends Actor {
-    def receive = { case msg => sender ! msg }
+    class Broadcaster extends RoutingActor with Broadcasting with ActorLogging {
+      def newChild(route: RoutedMsg) = None
+      def receive = receiveBroadcast
+    }
   }
 }
