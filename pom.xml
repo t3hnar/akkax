@@ -13,7 +13,7 @@
     <url>https://github.com/t3hnar/akkax</url>
     <inceptionYear>2012</inceptionYear>
     <properties>
-        <akka.version>2.1.4</akka.version>
+        <akka.version>2.2.1</akka.version>
     </properties>
     <scm>
         <url>https://github.com/t3hnar/akkax</url>
