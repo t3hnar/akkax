@@ -69,6 +69,6 @@ class IgnoreIfBusyExample extends Actor with ActorLogging with IgnoreIfBusy {
     <dependency>
         <groupId>ua.t3hnar.akkax</groupId>
         <artifactId>akkax_2.10</artifactId>
-        <version>1.3</version>
+        <version>1.5</version>
     </dependency>
 ```
