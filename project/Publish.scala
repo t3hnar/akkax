@@ -15,8 +15,8 @@ object Publish {
     publishSetting,
     pomExtra := (
       <scm>
-        <url>git@github.com:EventStore/eventstorejvmclient.git</url>
-        <connection>scm:git:git@github.com:EventStore/eventstorejvmclient.git</connection>
+        <url>git@github.com:t3hnar/akkax.git</url>
+        <connection>scm:git:git@github.com:t3hnar/akkax.git</connection>
       </scm>
         <developers>
           <developer>
