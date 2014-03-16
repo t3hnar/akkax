@@ -3,7 +3,6 @@ package com.github.t3hnar.akkax
 import akka.actor.{ ActorLogging, Actor }
 import concurrent.Future
 
-
 trait IgnoreIfBusy {
   this: Actor with ActorLogging =>
 

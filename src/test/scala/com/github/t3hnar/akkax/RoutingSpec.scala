@@ -4,28 +4,26 @@ import org.specs2.mutable.Specification
 import org.specs2.specification.Scope
 import akka.testkit.{ TestActorRef, ImplicitSender, TestKit }
 import akka.actor._
-import com.github.t3hnar.akkax.RoutedMsg
 
-
-class RoutingActorSpec extends Specification {
+class RoutingSpec extends Specification {
   "RoutingActor" should {
     "send message to child if exists, otherwise create a new one" in new ActorScope {
       actor.children must beEmpty
-      actorRef ! RoutedMsg(route, msg)
+      actorRef ! Routing.Routed(route, msg)
       expectMsg(msg)
       actor.children must haveSize(1)
 
-      actorRef ! RoutedMsg(2, msg)
-      actorRef ! RoutedMsg(3, msg)
+      actorRef ! Routing.Routed(2, msg)
+      actorRef ! Routing.Routed(3, msg)
       expectMsgAllOf(msg, msg)
       actor.children must haveSize(3)
     }
 
     "not follow dead children" in new ActorScope {
-      actorRef ! RoutedMsg(route, msg)
+      actorRef ! Routing.Routed(route, msg)
       expectMsg(msg)
       actor.children must haveSize(1)
-      actorRef ! RoutedMsg(route, kill)
+      actorRef ! Routing.Routed(route, kill)
 
       awaitCond {
         actor.children.isEmpty
@@ -33,10 +31,10 @@ class RoutingActorSpec extends Specification {
     }
 
     "not follow failed children" in new ActorScope {
-      actorRef ! RoutedMsg(route, msg)
+      actorRef ! Routing.Routed(route, msg)
       expectMsg(msg)
       actor.children must haveSize(1)
-      actorRef ! RoutedMsg(route, error)
+      actorRef ! Routing.Routed(route, error)
 
       awaitCond {
         actor.children.isEmpty
@@ -61,8 +59,8 @@ class RoutingActorSpec extends Specification {
     val actorRef = TestActorRef(new TestRoutingActor)
     def actor = actorRef.underlyingActor
 
-    class TestRoutingActor extends RoutingActor {
-      def newChild(routed: RoutedMsg) = Some(Props(new EchoActor))
+    class TestRoutingActor extends Actor with ActorLogging with Routing {
+      def newChild(routed: Routing.Routed) = Some(Props(new EchoActor))
       def receive = receiveRouted
     }
 

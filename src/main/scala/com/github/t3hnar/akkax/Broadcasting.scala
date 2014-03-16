@@ -1,8 +1,16 @@
 package com.github.t3hnar.akkax
 
+import akka.actor.Actor
+
+object Broadcasting {
+  case class Broadcast(msg: Any)
+  case class Routes(routes: List[Any])
+}
 
 trait Broadcasting {
-  this: RoutingActor =>
+  this: Actor with Routing =>
+
+  import Broadcasting._
 
   def receiveBroadcast: Receive = {
     case Broadcast(msg) =>
@@ -11,9 +19,7 @@ trait Broadcasting {
           child.forward(msg)
           route
       }
-      sender ! BroadcastRoutes(routes.toList)
+      sender ! Routes(routes.toList)
   }
 }
 
-case class Broadcast(msg: Any)
-case class BroadcastRoutes(routes: List[Any])

@@ -5,7 +5,7 @@ import akka.actor._
 import com.typesafe.config.ConfigFactory
 import org.specs2.specification.Scope
 import org.specs2.mutable.Specification
-
+import Broadcasting._
 
 class BroadcastingSpec extends Specification {
 
@@ -14,7 +14,7 @@ class BroadcastingSpec extends Specification {
       val msg = "hello"
       actor ! Broadcast(msg)
       expectMsgAllOf(routes.map(_ => msg): _*)
-      val br = expectMsgType[BroadcastRoutes]
+      val br = expectMsgType[Routes]
       br.routes.toSet mustEqual routes.toSet
     }
   }
@@ -24,8 +24,8 @@ class BroadcastingSpec extends Specification {
     val actor = TestActorRef(new Broadcaster)
     actor.underlyingActor.children = routes.map(_ -> testActor).toMap
 
-    class Broadcaster extends RoutingActor with Broadcasting with ActorLogging {
-      def newChild(route: RoutedMsg) = None
+    class Broadcaster extends Actor with ActorLogging with Routing with Broadcasting {
+      def newChild(route: Routing.Routed) = None
       def receive = receiveBroadcast
     }
   }

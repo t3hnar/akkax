@@ -2,14 +2,20 @@ package com.github.t3hnar.akkax
 
 import akka.actor._
 
+object Routing {
+  case class Routed(route: Any, msg: Any, createRouteIfNotExist: Boolean = true)
+}
 
+trait Routing {
+  this: Actor with ActorLogging =>
 
-trait RoutingActor extends Actor with ActorLogging {
+  import Routing._
+
   final override def supervisorStrategy = SupervisorStrategy.stoppingStrategy
 
   var children = Map[Any, ActorRef]()
 
-  def newChild(routed: RoutedMsg): Option[Props]
+  def newChild(routed: Routed): Option[Props]
 
   def registerChild(child: ActorRef, route: Any): ActorRef = {
     log.info("add: {} {}", route, child)
@@ -18,11 +24,11 @@ trait RoutingActor extends Actor with ActorLogging {
     child
   }
 
-  def child(routed: RoutedMsg): Option[ActorRef] = {
+  def child(routed: Routed): Option[ActorRef] = {
     val route = routed.route
     children.get(route) match {
       case some @ Some(_) => some
-      case None => newChild(routed) match {
+      case None => if (routed.createRouteIfNotExist) newChild(routed) match {
         case None =>
           log.info("ignore: {}", routed)
           context.system.deadLetters forward routed
@@ -31,6 +37,7 @@ trait RoutingActor extends Actor with ActorLogging {
           val child = context.actorOf(props)
           Some(registerChild(child, route))
       }
+      else None
     }
   }
 
@@ -43,9 +50,7 @@ trait RoutingActor extends Actor with ActorLogging {
   }
 
   def receiveRouted: Receive = {
-    case routed @ RoutedMsg(_, msg) => child(routed).foreach(_ forward msg)
+    case routed @ Routed(_, msg, _) => child(routed).foreach(_ forward msg)
     case Terminated(child)          => unregisterChild(child)
   }
 }
-
-case class RoutedMsg(route: Any, msg: Any)
