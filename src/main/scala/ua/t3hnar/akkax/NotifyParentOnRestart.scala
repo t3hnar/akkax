@@ -1,6 +1,6 @@
 package ua.t3hnar.akkax
 
-import akka.actor.{ActorRef, Actor}
+import akka.actor.{ ActorRef, Actor }
 
 /**
  * @author Yaroslav Klymko
@@ -11,7 +11,6 @@ trait NotifyParentOnRestart {
   abstract override def postRestart(reason: Throwable) {
     context.parent ! Restarted(self)
   }
-
 
   def restarted() {
     context.parent ! Restarted(self)

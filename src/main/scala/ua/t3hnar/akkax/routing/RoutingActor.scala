@@ -23,7 +23,7 @@ trait RoutingActor extends Actor with ActorLogging {
   def child(routed: RoutedMsg): Option[ActorRef] = {
     val route = routed.route
     children.get(route) match {
-      case some@Some(_) => some
+      case some @ Some(_) => some
       case None => newChild(routed) match {
         case None =>
           log.info("ignore: {}", routed)
@@ -45,8 +45,8 @@ trait RoutingActor extends Actor with ActorLogging {
   }
 
   def receiveRouted: Receive = {
-    case routed@RoutedMsg(_, msg) => child(routed).foreach(_ forward msg)
-    case Terminated(child) => unregisterChild(child)
+    case routed @ RoutedMsg(_, msg) => child(routed).foreach(_ forward msg)
+    case Terminated(child)          => unregisterChild(child)
   }
 }
 

@@ -1,6 +1,6 @@
 package ua.t3hnar.akkax
 
-import akka.actor.{ActorLogging, Actor}
+import akka.actor.{ ActorLogging, Actor }
 import concurrent.Future
 
 /**
@@ -10,7 +10,7 @@ trait IgnoreIfBusy {
   this: Actor with ActorLogging =>
 
   import IgnoreIfBusy._
-  import context.{become, unbecome,dispatcher}
+  import context.{ become, unbecome, dispatcher }
 
   def future[T](f: => T, completed: Completed) {
     Future(f).onComplete {

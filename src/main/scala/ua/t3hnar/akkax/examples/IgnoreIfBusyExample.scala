@@ -1,7 +1,7 @@
 package ua.t3hnar.akkax
 package examples
 
-import akka.actor.{ActorLogging, Actor}
+import akka.actor.{ ActorLogging, Actor }
 import ua.t3hnar.akkax.IgnoreIfBusy
 
 /**

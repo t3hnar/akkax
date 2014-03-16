@@ -1,7 +1,7 @@
 package ua.t3hnar.akkax.examples
 
-import ua.t3hnar.akkax.{NotifyParentOnRestart, Restarted}
-import akka.actor.{Actor, Props}
+import ua.t3hnar.akkax.{ NotifyParentOnRestart, Restarted }
+import akka.actor.{ Actor, Props }
 
 /**
  * @author Yaroslav Klymko

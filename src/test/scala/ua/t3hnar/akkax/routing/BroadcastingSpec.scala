@@ -1,15 +1,15 @@
 package ua.t3hnar.akkax.routing
 
-import akka.testkit.{TestActorRef, ImplicitSender, TestKit}
+import akka.testkit.{ TestActorRef, ImplicitSender, TestKit }
 import akka.actor._
 import com.typesafe.config.ConfigFactory
 import org.specs2.specification.Scope
-import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.mutable.Specification
 
 /**
  * @author Yaroslav Klymko
  */
-class BroadcastingSpec extends SpecificationWithJUnit {
+class BroadcastingSpec extends Specification {
 
   "Broadcasting" should {
     "broadcast message to all children" in new BroadcastingScope {

@@ -1,6 +1,5 @@
 package ua.t3hnar.akkax.routing
 
-
 /**
  * @author Yaroslav Klymko
  */

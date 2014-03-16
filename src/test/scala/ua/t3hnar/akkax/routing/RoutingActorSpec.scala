@@ -1,14 +1,14 @@
 package ua.t3hnar.akkax.routing
 
-import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.mutable.Specification
 import org.specs2.specification.Scope
-import akka.testkit.{TestActorRef, ImplicitSender, TestKit}
+import akka.testkit.{ TestActorRef, ImplicitSender, TestKit }
 import akka.actor._
 
 /**
  * @author Yaroslav Klymko
  */
-class RoutingActorSpec extends SpecificationWithJUnit {
+class RoutingActorSpec extends Specification {
   "RoutingActor" should {
     "send message to child if exists, otherwise create a new one" in new ActorScope {
       actor.children must beEmpty
@@ -70,8 +70,8 @@ class RoutingActorSpec extends SpecificationWithJUnit {
     class EchoActor extends Actor {
       def receive = {
         case `error` => throw new Exception
-        case `kill` => context.stop(self)
-        case x => sender ! x
+        case `kill`  => context.stop(self)
+        case x       => sender ! x
       }
     }
   }

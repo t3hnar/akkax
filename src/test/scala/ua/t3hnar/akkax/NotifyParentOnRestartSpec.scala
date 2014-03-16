@@ -1,14 +1,14 @@
 package ua.t3hnar.akkax
 
-import org.specs2.mutable.SpecificationWithJUnit
-import akka.testkit.{TestActorRef, TestKit}
-import akka.actor.{Props, Actor, ActorSystem}
+import org.specs2.mutable.Specification
+import akka.testkit.{ TestActorRef, TestKit }
+import akka.actor.{ Props, Actor, ActorSystem }
 import org.specs2.specification.Scope
 
 /**
  * @author Yaroslav Klymko
  */
-class NotifyParentOnRestartSpec extends SpecificationWithJUnit {
+class NotifyParentOnRestartSpec extends Specification {
 
   import NotifyParentOnRestartSpec._
 
@@ -19,7 +19,6 @@ class NotifyParentOnRestartSpec extends SpecificationWithJUnit {
       expectMsg(Restarted(actor.underlyingActor.child))
     }
   }
-
 
   abstract class ActorScope extends TestKit(ActorSystem()) with Scope {
 
@@ -34,7 +33,7 @@ class NotifyParentOnRestartSpec extends SpecificationWithJUnit {
 
       def receive = {
         case Restart => child ! new RuntimeException
-        case restarted@Restarted(`child`) =>
+        case restarted @ Restarted(`child`) =>
           testActor ! restarted
       }
     }
