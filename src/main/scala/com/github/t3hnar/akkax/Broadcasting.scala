@@ -1,4 +1,4 @@
-package com.github.t3hnar.akkax.routing
+package com.github.t3hnar.akkax
 
 /**
  * @author Yaroslav Klymko
