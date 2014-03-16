@@ -1,4 +1,4 @@
-package ua.t3hnar.akkax.routing
+package com.github.t3hnar.akkax.routing
 
 import org.specs2.mutable.Specification
 import org.specs2.specification.Scope

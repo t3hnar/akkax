@@ -1,4 +1,4 @@
-package ua.t3hnar.akkax
+package com.github.t3hnar.akkax
 
 import java.util.concurrent.TimeUnit
 import concurrent.duration.FiniteDuration

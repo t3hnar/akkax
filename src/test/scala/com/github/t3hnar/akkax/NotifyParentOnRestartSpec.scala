@@ -1,4 +1,4 @@
-package ua.t3hnar.akkax
+package com.github.t3hnar.akkax
 
 import org.specs2.mutable.Specification
 import akka.testkit.{ TestActorRef, TestKit }

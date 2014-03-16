@@ -12,7 +12,7 @@ Broadcast message to all child actors
 Converts duration to string
 
 ```scala
-import ua.t3hnar.akkax.DurationToString
+import com.github.t3hnar.akkax.DurationToString
 
 DurationToString(Duration(60, TimeUnit.SECONDS)) == "1 minute"
 DurationToString(Duration(60, TimeUnit.MINUTES)) == "1 hour"
@@ -23,7 +23,7 @@ DurationToString(Duration(180, TimeUnit.MINUTES)) == "3 hours"
 Mix this trait to enable on restart notification for actor.
 
 ```scala
-import ua.t3hnar.akkax.{NotifyParentOnRestart, Restarted}
+import com.github.t3hnar.akkax.{NotifyParentOnRestart, Restarted}
 
 class ChildActor extends Actor with NotifyParentOnRestart {
     def receive = { case _ => }
@@ -42,7 +42,7 @@ class ParentActor extends Actor {
 Trait `IgnoreIfBusy` will allow your actor to ignore all messages while it busy with running heavy call
 
 ```scala
-import ua.t3hnar.akkax.IgnoreIfBusy
+import com.github.t3hnar.akkax.IgnoreIfBusy
 
 class IgnoreIfBusyExample extends Actor with ActorLogging with IgnoreIfBusy {
   def receive = receiveRun
@@ -55,20 +55,16 @@ class IgnoreIfBusyExample extends Actor with ActorLogging with IgnoreIfBusy {
 
 ## Setup
 
-1. Add this repository to your pom.xml:
-```xml
-    <repository>
-        <id>thenewmotion</id>
-        <name>The New Motion Repository</name>
-        <url>http://nexus.thenewmotion.com/content/repositories/releases-public</url>
-    </repository>
-```
-
-2. Add dependency to your pom.xml:
+* Maven:
 ```xml
     <dependency>
-        <groupId>ua.t3hnar.akkax</groupId>
+        <groupId>com.github.t3hnar</groupId>
         <artifactId>akkax_2.10</artifactId>
-        <version>1.5</version>
+        <version>2.0</version>
     </dependency>
+```
+
+* Sbt
+```scala
+    libraryDependencies += "com.github.t3hnar" % "akkax_2.10" % "2.0"
 ```

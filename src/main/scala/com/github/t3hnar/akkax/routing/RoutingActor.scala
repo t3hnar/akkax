@@ -1,4 +1,4 @@
-package ua.t3hnar.akkax.routing
+package com.github.t3hnar.akkax.routing
 
 import akka.actor._
 

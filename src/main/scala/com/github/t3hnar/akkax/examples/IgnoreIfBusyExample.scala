@@ -1,8 +1,8 @@
-package ua.t3hnar.akkax
+package com.github.t3hnar.akkax
 package examples
 
 import akka.actor.{ ActorLogging, Actor }
-import ua.t3hnar.akkax.IgnoreIfBusy
+import com.github.t3hnar.akkax.IgnoreIfBusy
 
 /**
  * @author Yaroslav Klymko
