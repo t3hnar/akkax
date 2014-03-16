@@ -2,9 +2,7 @@ package com.github.t3hnar.akkax
 
 import akka.actor._
 
-/**
- * @author Yaroslav Klymko
- */
+
 
 trait RoutingActor extends Actor with ActorLogging {
   final override def supervisorStrategy = SupervisorStrategy.stoppingStrategy

@@ -1,8 +1,6 @@
 package com.github.t3hnar.akkax
 
-/**
- * @author Yaroslav Klymko
- */
+
 trait Broadcasting {
   this: RoutingActor =>
 

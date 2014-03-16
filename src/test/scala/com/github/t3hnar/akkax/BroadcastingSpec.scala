@@ -6,9 +6,7 @@ import com.typesafe.config.ConfigFactory
 import org.specs2.specification.Scope
 import org.specs2.mutable.Specification
 
-/**
- * @author Yaroslav Klymko
- */
+
 class BroadcastingSpec extends Specification {
 
   "Broadcasting" should {

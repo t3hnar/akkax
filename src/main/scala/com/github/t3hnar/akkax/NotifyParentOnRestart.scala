@@ -2,9 +2,7 @@ package com.github.t3hnar.akkax
 
 import akka.actor.{ ActorRef, Actor }
 
-/**
- * @author Yaroslav Klymko
- */
+
 trait NotifyParentOnRestart {
   this: Actor =>
 

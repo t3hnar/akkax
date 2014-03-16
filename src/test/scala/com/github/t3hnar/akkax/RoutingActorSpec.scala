@@ -6,9 +6,7 @@ import akka.testkit.{ TestActorRef, ImplicitSender, TestKit }
 import akka.actor._
 import com.github.t3hnar.akkax.RoutedMsg
 
-/**
- * @author Yaroslav Klymko
- */
+
 class RoutingActorSpec extends Specification {
   "RoutingActor" should {
     "send message to child if exists, otherwise create a new one" in new ActorScope {

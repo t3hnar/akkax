@@ -5,9 +5,7 @@ import akka.testkit.{ TestActorRef, TestKit }
 import akka.actor.{ Props, Actor, ActorSystem }
 import org.specs2.specification.Scope
 
-/**
- * @author Yaroslav Klymko
- */
+
 class NotifyParentOnRestartSpec extends Specification {
 
   import NotifyParentOnRestartSpec._

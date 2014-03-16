@@ -4,9 +4,7 @@ import java.util.concurrent.TimeUnit
 import concurrent.duration.FiniteDuration
 import TimeUnit._
 
-/**
- * @author Yaroslav Klymko
- */
+
 object DurationToString {
   def apply(d: FiniteDuration): String = {
     def to(unit: => TimeUnit, value: Long): Option[FiniteDuration] = {
