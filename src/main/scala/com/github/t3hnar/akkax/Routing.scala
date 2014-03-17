@@ -1,9 +1,12 @@
 package com.github.t3hnar.akkax
 
 import akka.actor._
+import akka.routing.ConsistentHashingRouter.ConsistentHashable
 
 object Routing {
-  case class Routed(route: Any, msg: Any, createRouteIfNotExist: Boolean = true)
+  case class Routed(route: Any, msg: Any, createRouteIfNotExist: Boolean = true) extends ConsistentHashable {
+    override def consistentHashKey = route
+  }
 }
 
 trait Routing {
