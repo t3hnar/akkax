@@ -18,12 +18,16 @@ trait IgnoreIfBusy {
   }
 
   def run(data: Option[Any])
+  def ignored(data: Option[Any]) = {
+    log.debug(s"Message ignored: $data")
+  }
 
   def receiveRun: Receive = {
     case Run(data) =>
       val completed = new Completed
       become {
         case `completed` => unbecome()
+        case Run(ignoredData) => ignored(ignoredData)
       }
       future(run(data), completed)
   }
