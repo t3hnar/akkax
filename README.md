@@ -66,5 +66,5 @@ class IgnoreIfBusyExample extends Actor with ActorLogging with IgnoreIfBusy {
 
 * Sbt
 ```scala
-    libraryDependencies += "com.github.t3hnar" % "akkax_2.10" % "2.0"
+    libraryDependencies += "com.github.t3hnar" %% "akkax" % "2.0"
 ```

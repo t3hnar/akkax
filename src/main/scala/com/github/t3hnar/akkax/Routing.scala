@@ -54,6 +54,6 @@ trait Routing {
 
   def receiveRouted: Receive = {
     case routed @ Routed(_, msg, _) => child(routed).foreach(_ forward msg)
-    case Terminated(child)          => unregisterChild(child)
+    case Terminated(child) => unregisterChild(child)
   }
 }

@@ -67,8 +67,8 @@ class RoutingSpec extends Specification {
     class EchoActor extends Actor {
       def receive = {
         case `error` => throw new Exception
-        case `kill`  => context.stop(self)
-        case x       => sender ! x
+        case `kill` => context.stop(self)
+        case x => sender ! x
       }
     }
   }
