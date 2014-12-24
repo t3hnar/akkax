@@ -4,6 +4,7 @@ import org.specs2.mutable.Specification
 import org.specs2.specification.Scope
 import akka.testkit.{ TestActorRef, ImplicitSender, TestKit }
 import akka.actor._
+import scala.util.control.NoStackTrace
 
 class RoutingSpec extends Specification {
   "RoutingActor" should {
@@ -66,7 +67,7 @@ class RoutingSpec extends Specification {
 
     class EchoActor extends Actor {
       def receive = {
-        case `error` => throw new Exception
+        case `error` => throw new RuntimeException with NoStackTrace
         case `kill` => context.stop(self)
         case x => sender ! x
       }

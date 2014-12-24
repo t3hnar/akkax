@@ -1,9 +1,10 @@
 package com.github.t3hnar.akkax
 
 import org.specs2.mutable.Specification
+import org.specs2.specification.Scope
 import akka.testkit.{ TestActorRef, TestKit }
 import akka.actor.{ Props, Actor, ActorSystem }
-import org.specs2.specification.Scope
+import scala.util.control.NoStackTrace
 
 class NotifyParentOnRestartSpec extends Specification {
 
@@ -29,7 +30,7 @@ class NotifyParentOnRestartSpec extends Specification {
       lazy val child = context.actorOf(Props(new ChildActor))
 
       def receive = {
-        case Restart => child ! new RuntimeException
+        case Restart => child ! new RuntimeException with NoStackTrace
         case restarted @ Restarted(`child`) =>
           testActor ! restarted
       }
