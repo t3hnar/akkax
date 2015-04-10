@@ -17,6 +17,10 @@ scalacOptions := Seq("-encoding", "UTF-8", "-unchecked", "-deprecation", "-featu
 
 libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.3.8"
 
+libraryDependencies += "joda-time" % "joda-time" % "2.7"
+
+libraryDependencies += "org.joda" % "joda-convert" % "1.2"
+
 libraryDependencies += "com.typesafe.akka" %% "akka-testkit" % "2.3.8" % "test"
 
 libraryDependencies += "org.specs2" %% "specs2-core" % "2.4.15" % "test"

@@ -8,6 +8,9 @@ Actor which will pass message to child actor defined for route. If no actors fou
 ### BroadcastingActor
 Broadcast message to all child actors
 
+### PeriodicJobActor
+Actor which run a job at a certain interval
+
 ### DurationToString
 Converts duration to string
 
