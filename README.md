@@ -1,4 +1,4 @@
-# AkkaX [![Build Status](https://secure.travis-ci.org/t3hnar/akkax.png)](http://travis-ci.org/t3hnar/akkax) [![Coverage Status](https://coveralls.io/repos/t3hnar/akkax/badge.svg)](https://coveralls.io/r/t3hnar/akkax)
+# AkkaX [![Build Status](https://secure.travis-ci.org/t3hnar/akkax.svg)](http://travis-ci.org/t3hnar/akkax) [![Coverage Status](https://coveralls.io/repos/t3hnar/akkax/badge.svg)](https://coveralls.io/r/t3hnar/akkax)
 
 Useful utils for [Akka Actors](http://http://akka.io)
 
