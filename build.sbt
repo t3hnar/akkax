@@ -26,7 +26,7 @@ def akkaDependencies(scalaVersion: String) = {
 
 libraryDependencies <++= scalaVersion { v => akkaDependencies(v) }
 
-libraryDependencies += "joda-time" % "joda-time" % "2.7"
+libraryDependencies += "joda-time" % "joda-time" % "2.9.4"
 
 libraryDependencies += "org.joda" % "joda-convert" % "1.2"
 
