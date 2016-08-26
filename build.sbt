@@ -16,7 +16,7 @@ homepage := Some(new URL("https://github.com/t3hnar/akkax"))
 scalacOptions := Seq("-encoding", "UTF-8", "-unchecked", "-deprecation", "-feature", "-Xlint")
 
 def akkaDependencies(scalaVersion: String) = {
-  val akkaVersion = if (scalaVersion.startsWith("2.10.")) "2.3.9" else "2.4.4"
+  val akkaVersion = if (scalaVersion.startsWith("2.10.")) "2.3.15" else "2.4.9"
 
   Seq(
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
