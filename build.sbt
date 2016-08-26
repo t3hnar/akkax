@@ -7,7 +7,7 @@ organization := "com.github.t3hnar"
 
 scalaVersion := "2.11.8"
 
-crossScalaVersions := Seq("2.10.5", "2.11.8")
+crossScalaVersions := Seq("2.10.6", "2.11.8")
 
 licenses := Seq(("Apache License, Version 2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
