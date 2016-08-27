@@ -63,11 +63,11 @@ class IgnoreIfBusyExample extends Actor with ActorLogging with IgnoreIfBusy {
     <dependency>
         <groupId>com.github.t3hnar</groupId>
         <artifactId>akkax_2.11</artifactId>
-        <version>2.2</version>
+        <version>2.3</version>
     </dependency>
 ```
 
 * Sbt
 ```scala
-    libraryDependencies += "com.github.t3hnar" %% "akkax" % "2.2"
+    libraryDependencies += "com.github.t3hnar" %% "akkax" % "2.3"
 ```
