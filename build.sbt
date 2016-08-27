@@ -7,7 +7,7 @@ organization := "com.github.t3hnar"
 
 scalaVersion := "2.11.8"
 
-crossScalaVersions := Seq("2.10.5", "2.11.8")
+crossScalaVersions := Seq("2.10.6", "2.11.8")
 
 licenses := Seq(("Apache License, Version 2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
@@ -16,7 +16,7 @@ homepage := Some(new URL("https://github.com/t3hnar/akkax"))
 scalacOptions := Seq("-encoding", "UTF-8", "-unchecked", "-deprecation", "-feature", "-Xlint")
 
 def akkaDependencies(scalaVersion: String) = {
-  val akkaVersion = if (scalaVersion.startsWith("2.10.")) "2.3.9" else "2.4.4"
+  val akkaVersion = if (scalaVersion.startsWith("2.10.")) "2.3.15" else "2.4.9"
 
   Seq(
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
@@ -26,7 +26,7 @@ def akkaDependencies(scalaVersion: String) = {
 
 libraryDependencies <++= scalaVersion { v => akkaDependencies(v) }
 
-libraryDependencies += "joda-time" % "joda-time" % "2.7"
+libraryDependencies += "joda-time" % "joda-time" % "2.9.4"
 
 libraryDependencies += "org.joda" % "joda-convert" % "1.2"
 
