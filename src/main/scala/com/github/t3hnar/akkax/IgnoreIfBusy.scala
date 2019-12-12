@@ -26,7 +26,7 @@ trait IgnoreIfBusy {
     case Run(data) =>
       val completed = new Completed
       become {
-        case `completed` => unbecome()
+        case `completed`      => unbecome()
         case Run(ignoredData) => ignored(ignoredData)
       }
       future(run(data), completed)
