@@ -1,13 +1,10 @@
-import SonatypeKeys._
-import scalariform.formatter.preferences._
-
 name := "akkax"
 
 organization := "com.github.t3hnar"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.13.1"
 
-crossScalaVersions := Seq("2.10.6", "2.11.8")
+crossScalaVersions := Seq("2.11.8", "2.12.10", "2.13.1")
 
 licenses := Seq(("Apache License, Version 2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
@@ -16,7 +13,7 @@ homepage := Some(new URL("https://github.com/t3hnar/akkax"))
 scalacOptions := Seq("-encoding", "UTF-8", "-unchecked", "-deprecation", "-feature", "-Xlint")
 
 def akkaDependencies(scalaVersion: String) = {
-  val akkaVersion = if (scalaVersion.startsWith("2.10.")) "2.3.15" else "2.4.9"
+  val akkaVersion = "2.5.27"
 
   Seq(
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
@@ -24,15 +21,15 @@ def akkaDependencies(scalaVersion: String) = {
   )
 }
 
-libraryDependencies <++= scalaVersion { v => akkaDependencies(v) }
+libraryDependencies ++= { akkaDependencies(scalaVersion.value) }
 
-libraryDependencies += "joda-time" % "joda-time" % "2.9.4"
+libraryDependencies += "joda-time" % "joda-time" % "2.10.5"
 
-libraryDependencies += "org.joda" % "joda-convert" % "1.2"
+libraryDependencies += "org.joda" % "joda-convert" % "2.2.1"
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "2.4.15" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.8.1" % "test"
 
-profileName := "t3hnar"
+sonatypeProfileName := "t3hnar"
 
 pomExtra := {
   <scm>
@@ -49,13 +46,9 @@ pomExtra := {
   </developers>
 }
 
-ScalariformKeys.preferences := ScalariformKeys.preferences.value
+import scalariform.formatter.preferences._
+
+scalariformPreferences := scalariformPreferences.value
   .setPreference(AlignParameters, true)
   .setPreference(AlignSingleLineCaseStatements, true)
   .setPreference(DoubleIndentClassDeclaration, true)
-
-scalariformSettings
-
-sonatypeSettings
-
-releaseSettings
