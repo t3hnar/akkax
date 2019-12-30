@@ -31,6 +31,8 @@ libraryDependencies += "org.specs2" %% "specs2-core" % "4.8.1" % "test"
 
 sonatypeProfileName := "t3hnar"
 
+publishTo := sonatypePublishToBundle.value
+
 pomExtra := {
   <scm>
     <url>git@github.com:t3hnar/akkax.git</url>
